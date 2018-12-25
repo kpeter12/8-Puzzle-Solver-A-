@@ -1,7 +1,9 @@
 # A node will represent a board state.
 # It contains an array with the current board state as well as some other attributes used by A*.
 from Board import Board
-from bisect import bisect_left
+
+
+goal_board_list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 
 class Node:
@@ -41,7 +43,6 @@ class Node:
 
     # returns the h(x) value for the manhattan distance
     def heuristic(self):
-        goal_board_list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
         manhattan_distance = 0
         for i in range(0, len(self.board.board_list)):
@@ -52,28 +53,15 @@ class Node:
             elif distance > 2:
                 manhattan_distance += 1
             manhattan_distance += abs(index_of_i - i) % 3
+        return manhattan_distance
 
-        n_seq = 0
-        for i in range(0, len(self.board.board_list)):
-            if i == 4:
-                n_seq += 1
-            elif self.board.board_list[i] != goal_board_list[self.clock_wise(i)]:
-                n_seq += 2
-            return n_seq + manhattan_distance
 
-    #returns the index clockwise to the given index
-    def clock_wise(self, index):
-        if index == 0 or index == 1:
-            return index + 1
-        elif index == 2 or index == 5:
-            return index + 3
-        elif index == 8 or index == 7:
-            return index - 1
-        elif index == 3 or index == 6:
-            return index - 3
-        elif index == 4:
-            return 4
-        # [0, 1, 2,
-        #  3, 4, 5,
-        #  6, 7, 8]
+# [0, 1, 2,
+#  3, 4, 5,
+#  6, 7, 8]
+# proper number in Nilsson's sequence
+def clock_wise(num):
+    # index is num, element is successor
+    successors = [1, 2, 5, 0, 4, 8, 3, 6, 7]
+    return successors[num]
 

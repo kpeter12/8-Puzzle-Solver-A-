@@ -61,7 +61,6 @@ class Graphics2:
         h = self.total_height / boxes_per_row - padding
         padding = 10
         self.canvas.delete("all")
-        print("length", len(path_to_solution))
         rows = 0
         count = 0
 

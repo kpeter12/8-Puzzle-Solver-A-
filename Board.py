@@ -69,4 +69,10 @@ class Board:
             d = random.choice(self.available_moves)
             self.move(d)
 
-
+    @staticmethod
+    def random_board(board_list, shuffles):
+        b = Board(board_list)
+        for i in range(0, shuffles):
+            d = random.choice(b.available_moves)
+            b.move(d)
+        return b.board_list.copy()

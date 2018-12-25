@@ -13,7 +13,7 @@ class Gui:
         self.window = tkinter.Tk()
         self.window.title("Specify Board Settings")
         self.window.configure(background=self.background_color)
-        self.shuffles = 50
+        self.shuffles = 100
         self.start_board = [tkinter.StringVar(), tkinter.StringVar(), tkinter.StringVar(), tkinter.StringVar(),
                             tkinter.StringVar(), tkinter.StringVar(), tkinter.StringVar(), tkinter.StringVar(),
                             tkinter.StringVar()]
